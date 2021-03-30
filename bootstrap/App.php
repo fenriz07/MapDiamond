@@ -35,24 +35,16 @@ class App
 
     public function initCss()
     {
-        wp_register_style('esmax-mzzo-app-css', PLUGIN_MAP_URI . 'assets/app/bundle.css', '',  $this->versionAssets);
-        wp_enqueue_style('esmax-mzzo-app-css');
+        wp_register_style('map-app-css', PLUGIN_MAP_URI . 'assets/app/bundle.css', '',  $this->versionAssets);
+        wp_enqueue_style('map-app-css');
     }
 
     public function initJs()
     {
-        wp_register_script('esmax-mzzo-app-js',  PLUGIN_MAP_URI .  'assets/app/bundle.js', '', $this->versionAssets);
+        wp_register_script('map-mzzo-app-js',  PLUGIN_MAP_URI .  'assets/app/bundle.js', '', $this->versionAssets);
 
-        $values = [
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('callme-nonce'),
-        ];
+        wp_localize_script('map-mzzo-app-js');
 
-        wp_localize_script('esmax-mzzo-app-js', 'esmaxmzzo', $values);
-
-        wp_enqueue_script('esmax-mzzo-app-js');
-
-        wp_register_script('catpcha-google-mzzo',  'https://www.google.com/recaptcha/api.js?render=6Lf_HTMaAAAAAEjPCz9mQAvRs6bPZTcLJDtfAbhc', '', $this->versionAssets);
-        wp_enqueue_script('catpcha-google-mzzo');
+        wp_enqueue_script('map-mzzo-app-js');
     }
 }
