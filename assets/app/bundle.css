@@ -1,0 +1,30 @@
+.swal2-close{
+    color: #ccc !important;
+    font-family: serif !important;
+    font-size: 2.5em !important;
+    cursor: pointer !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+    background: 0 0 !important;
+}
+
+.invalid-feedback{
+    color: red;
+    margin-top: 2px;
+}
+
+#btn-form-llamamos{
+    margin-top: 15px;
+    border: 0px !important;
+}
+
+#form-llamanos .form-group{
+    text-align: left;
+}
+
+#form-llamanos label{
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+/*# sourceMappingURL=bundle.css.map*/
