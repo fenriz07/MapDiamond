@@ -1,11 +1,10 @@
 <?php
 /*
-    Plugin Name: Map Diamond
-    Description: 
-    Version: 0.0.1
-    Author: Servio Zambrano 
-    Author URI: 
-
+Plugin Name: Map Diamond
+Description: 
+Version: 0.0.1
+Author: Servio Zambrano 
+Author URI: 
 /*error_reporting(-1);
 ini_set('display_errors', 'On');*/
 
