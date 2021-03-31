@@ -43,8 +43,6 @@ class App
     {
         wp_register_script('map-mzzo-app-js',  PLUGIN_MAP_URI .  'assets/app/bundle.js', '', $this->versionAssets);
 
-        wp_localize_script('map-mzzo-app-js');
-
         wp_enqueue_script('map-mzzo-app-js');
     }
 }

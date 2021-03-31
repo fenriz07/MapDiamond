@@ -17,8 +17,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: [/node_modules\/(?!(swiper|dom7|bootstrap|jquery|jquery-toast-plugin)\/).*/, /\.test\.jsx?$/],
+        test: /\.(js|jsx)$/,
+        //exclude: [/node_modules\/(?!(swiper|dom7|bootstrap|jquery|jquery-toast-plugin)\/).*/, /\.test\.jsx?$/],
         use: {
           loader: 'babel-loader',
           options: {

@@ -1,4 +1,6 @@
-import callMe from './components/callMe';
+import React from 'react';
+import ReactDOM from 'react-dom'
+import Locations from './components/Locations';
 
 
 function ready(fn) {
@@ -12,5 +14,14 @@ function ready(fn) {
 
   
 ready( () => {
-    new callMe();
+
+
+  let mapdiamond = document.getElementById('map-diamond');
+
+
+  if( mapdiamond ){
+    ReactDOM.render(<Locations/>,mapdiamond);
+  }
+
+
 })

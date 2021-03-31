@@ -13,6 +13,6 @@
             "App\\"       : "app/",
             "Bootstrap\\" : "bootstrap/"
         }
-    },
+    }
 
 }
