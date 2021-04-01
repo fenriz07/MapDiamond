@@ -52,6 +52,10 @@ export function Regions() {
         {
             "id" :13,
             "name": "Región de Los Lagos",
+        },
+        {
+            "id" :14,
+            "name": "Región Metropolitana de Santiago",
         }
     
     ];

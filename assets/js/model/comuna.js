@@ -60,12 +60,23 @@ export function Comunas() {
                     name :  "Pica",
                 },
         ],
+        14 : [
+            {
+                id:13,
+                name :"Santiago Centro",
+                points : [
+                    { lat : -33.44732603999942 , lng:-70.65784434776982},
+                    { lat : -33.44043389275519, lng:-70.66114824638738},
+                ], 
+                center : { lat : -33.4433631222408, lng:-70.65392096816144} 
+            }
+        ], 
     }
     
 } 
 
 export function getCenterComuna( idRegion, idComuna){
-    
+
     let region = Comunas()[idRegion];
     let center = CENTER_MAP;
 

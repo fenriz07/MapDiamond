@@ -423,6 +423,21 @@ function Comunas() {
     }, {
       id: 12,
       name: "Pica"
+    }],
+    14: [{
+      id: 13,
+      name: "Santiago Centro",
+      points: [{
+        lat: -33.44732603999942,
+        lng: -70.65784434776982
+      }, {
+        lat: -33.44043389275519,
+        lng: -70.66114824638738
+      }],
+      center: {
+        lat: -33.4433631222408,
+        lng: -70.65392096816144
+      }
     }]
   };
 }
@@ -543,6 +558,9 @@ function Regions() {
   }, {
     "id": 13,
     "name": "Región de Los Lagos"
+  }, {
+    "id": 14,
+    "name": "Región Metropolitana de Santiago"
   }];
 }
 
