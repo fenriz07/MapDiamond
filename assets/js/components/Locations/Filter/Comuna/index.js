@@ -1,16 +1,20 @@
 import React  from 'react';
-import { Comunas } from '../../../../model/comuna';
+import { Comunas,getCenterComuna } from '../../../../model/comuna';
 
 
-export default function Region(props) {
+export default function Comuna(props) {
 
-    const {region,setComuna} = props;
+    const {region,setCenter} = props;
 
     const onChange = ( event ) => {
 
         let target = event.target;
 
-        setComuna(target.value);
+        let idComuna = Number(target.value);
+
+        let center = getCenterComuna(region,idComuna);
+
+        setCenter(center)
     }
 
     if( region === null )

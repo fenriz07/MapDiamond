@@ -7,6 +7,7 @@ export default function Filter(props) {
 
     const [region,setRegion] = useState(null);
     const [comuna,setComuna] = useState(null);
+    const {setCenter} = props;
 
 
 return (
@@ -14,7 +15,7 @@ return (
     <div className="col-6 filter">
 
         <Region setRegion={setRegion}/>
-        <Comuna region={region} comuna={comuna} setComuna={setComuna}/>
+        <Comuna setCenter={setCenter} region={region} comuna={comuna} setComuna={setComuna}/>
 
     </div>
 

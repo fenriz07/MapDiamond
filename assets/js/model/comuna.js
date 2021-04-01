@@ -1,3 +1,5 @@
+import { CENTER_MAP } from "./conf";
+
 export function Comunas() {
 
     return {
@@ -6,10 +8,10 @@ export function Comunas() {
                     id : 1,
                     name :  "Arica",
                     points : [
-                        [  "-18.45259904738144", "-70.29266933285768"],
-                        [ "-18.490148654973403", "-70.29744571644653"],
+                        { lat : -18.45259904738144 , lng:-70.29266933285768},
+                        { lat : -18.490148654973403, lng:-70.29744571644653},
                     ],
-                    center : [ "-18.476577063399176", "-70.31783530733459" ]
+                    center : { lat : -18.476577063399176, lng:-70.31783530733459}                  
                 },
                 {
                     id : 2,
@@ -61,4 +63,22 @@ export function Comunas() {
     }
     
 } 
+
+export function getCenterComuna( idRegion, idComuna){
+    
+    let region = Comunas()[idRegion];
+    let center = CENTER_MAP;
+
+    region.forEach( comuna => {
+
+        if( comuna.id == idComuna)
+        {   if( "center" in comuna ){
+                center = comuna.center;
+            }            
+        }
+    });
+
+    return center;
+}
+
 

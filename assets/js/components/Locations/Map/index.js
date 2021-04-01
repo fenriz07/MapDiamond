@@ -1,26 +1,34 @@
-import loadGoogleMapsApi from '../../../lib/GoogleMapApi'
+import React from 'react'
+import { GoogleMap, LoadScript,Marker } from '@react-google-maps/api';
+import {  CONTAINER_STYLE, GOOGLE_MAP_API_KEY } from '../../../model/conf';
+import { getMarkers } from '../../../model/markers.';
 
-export default (selector = 'Map-Contact',coords,that) => {
 
-  return loadGoogleMapsApi().then(function (google) {
+function Map(props) {
 
-      console.log("Epa");
+  const {center} = props;
 
-      const markers = new Array();
-      const myLatlng = new google.LatLng(coords.lat, coords.lng);
-      const mapOptions = {
-        zoom: 7,
-        center: myLatlng,
-        mapTypeId: google.MapTypeId.TERRAIN,
-        //disableDefaultUI: true,
-      };
+  return (
+    <LoadScript
+      googleMapsApiKey={GOOGLE_MAP_API_KEY}
+    >
+      <GoogleMap
+        mapContainerStyle={CONTAINER_STYLE}
+        center={center}
+        zoom={11}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
 
-      const map = new google.Map(document.getElementById(selector), mapOptions);
+        {
+          getMarkers().map( (position,key) => {
+            return <Marker key={key} position={position} />
+          })
+        }
 
-      return {google,map,that}; 
-
-  }).catch(function (error) {
-    console.error(error)
-  })
-
+      </GoogleMap>
+    </LoadScript>
+  )
 }
+
+export default React.memo(Map)
