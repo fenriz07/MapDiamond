@@ -3,7 +3,7 @@ export const CENTER_MAP = {
     lng: -70.65368618739299
   };
 
-export const GOOGLE_MAP_API_KEY = "AIzaSyAkOUS3ypDAxmeQSRYEepO1AJmaClrmJRU";
+export const GOOGLE_MAP_API_KEY = "";
 
 export const CONTAINER_STYLE = {
     width: '400px',
