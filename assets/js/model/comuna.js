@@ -8,8 +8,8 @@ export function Comunas() {
                     id : 1,
                     name :  "Arica",
                     points : [
-                        { lat : -18.45259904738144 , lng:-70.29266933285768},
-                        { lat : -18.490148654973403, lng:-70.29744571644653},
+                        { lat : -18.45259904738144 , lng:-70.29266933285768,name:"Test1",phone:"741852",website:"https://google.com"},
+                        { lat : -18.490148654973403, lng:-70.29744571644653,name:"Test2",phone:"741852",website:"https://google.com"},
                     ],
                     center : { lat : -18.476577063399176, lng:-70.31783530733459}                  
                 },
@@ -65,8 +65,8 @@ export function Comunas() {
                 id:13,
                 name :"Santiago Centro",
                 points : [
-                    { lat : -33.44732603999942 , lng:-70.65784434776982},
-                    { lat : -33.44043389275519, lng:-70.66114824638738},
+                    { lat : -33.44732603999942 , lng:-70.65784434776982,name:"Test1",phone:"741852",website:"https://google.com"},
+                    { lat : -33.44043389275519, lng:-70.66114824638738 ,name:"Test2",phone:"741852",website:"https://google.com"},
                 ], 
                 center : { lat : -33.4433631222408, lng:-70.65392096816144} 
             }

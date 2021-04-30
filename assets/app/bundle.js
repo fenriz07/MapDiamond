@@ -245,6 +245,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @react-google-maps/api */ "./node_modules/@react-google-maps/api/dist/reactgooglemapsapi.esm.js");
 /* harmony import */ var _model_conf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../model/conf */ "./js/model/conf.js");
 /* harmony import */ var _model_markers___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../model/markers. */ "./js/model/markers..js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -259,11 +271,44 @@ function Map(props) {
     center: center,
     zoom: 11
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), Object(_model_markers___WEBPACK_IMPORTED_MODULE_3__["getMarkers"])().map(function (position, key) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomMarker, {
       key: key,
-      position: position
+      position: position,
+      text: "Test"
     });
   })));
+}
+
+function CustomMarker(props) {
+  var position = props.position;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      open = _useState2[0],
+      setOpen = _useState2[1];
+
+  var onClick = function onClick(e) {
+    setOpen(!open);
+  };
+
+  if (open == true) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
+      position: position,
+      onClick: onClick
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["InfoWindow"], {
+      position: position
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Nombre: ", position.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "tel:" + position.phone
+    }, position.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      target: "_blank",
+      href: position.website
+    }, "Sitio Web"))));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
+    position: position,
+    onClick: onClick
+  }, " ");
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.memo(Map));
@@ -380,10 +425,16 @@ function Comunas() {
       name: "Arica",
       points: [{
         lat: -18.45259904738144,
-        lng: -70.29266933285768
+        lng: -70.29266933285768,
+        name: "Test1",
+        phone: "741852",
+        website: "https://google.com"
       }, {
         lat: -18.490148654973403,
-        lng: -70.29744571644653
+        lng: -70.29744571644653,
+        name: "Test2",
+        phone: "741852",
+        website: "https://google.com"
       }],
       center: {
         lat: -18.476577063399176,
@@ -429,10 +480,16 @@ function Comunas() {
       name: "Santiago Centro",
       points: [{
         lat: -33.44732603999942,
-        lng: -70.65784434776982
+        lng: -70.65784434776982,
+        name: "Test1",
+        phone: "741852",
+        website: "https://google.com"
       }, {
         lat: -33.44043389275519,
-        lng: -70.66114824638738
+        lng: -70.66114824638738,
+        name: "Test2",
+        phone: "741852",
+        website: "https://google.com"
       }],
       center: {
         lat: -33.4433631222408,
