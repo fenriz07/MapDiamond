@@ -65,8 +65,8 @@ export function Comunas() {
                 id:13,
                 name :"Santiago Centro",
                 points : [
-                    { lat : -33.44732603999942 , lng:-70.65784434776982,name:"Test1",phone:"741852",website:"https://google.com"},
-                    { lat : -33.44043389275519, lng:-70.66114824638738 ,name:"Test2",phone:"741852",website:"https://google.com"},
+                    { lat : -33.44732603999942 , lng:-70.65784434776982,name:"Test1",phone:"741852",website:"https://google.com","city":"Prueba de Ciudad"},
+                    { lat : -33.44043389275519, lng:-70.66114824638738 ,name:"Test2",phone:"741852",website:"https://google.com","city":"Prueba de Ciudad2"},
                 ], 
                 center : { lat : -33.4433631222408, lng:-70.65392096816144} 
             }

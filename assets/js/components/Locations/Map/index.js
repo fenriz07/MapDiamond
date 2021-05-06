@@ -52,6 +52,7 @@ function CustomMarker(props) {
       >
         <div className="info-window-22">
           <h1>Nombre: {position.name}</h1>
+          <p>Ciudad: {position.city}</p>
           <a href={"tel:"+position.phone}>{position.phone}</a> 
           <a target="_blank" href={position.website}>Sitio Web</a>
         </div>

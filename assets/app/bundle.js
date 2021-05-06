@@ -297,7 +297,9 @@ function CustomMarker(props) {
       onClick: onClick
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["InfoWindow"], {
       position: position
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Nombre: ", position.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "info-window-22"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Nombre: ", position.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Ciudad: ", position.city), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "tel:" + position.phone
     }, position.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       target: "_blank",
@@ -483,13 +485,15 @@ function Comunas() {
         lng: -70.65784434776982,
         name: "Test1",
         phone: "741852",
-        website: "https://google.com"
+        website: "https://google.com",
+        "city": "Prueba de Ciudad"
       }, {
         lat: -33.44043389275519,
         lng: -70.66114824638738,
         name: "Test2",
         phone: "741852",
-        website: "https://google.com"
+        website: "https://google.com",
+        "city": "Prueba de Ciudad2"
       }],
       center: {
         lat: -33.4433631222408,
@@ -529,7 +533,7 @@ var CENTER_MAP = {
   lat: -33.44343582525667,
   lng: -70.65368618739299
 };
-var GOOGLE_MAP_API_KEY = "AIzaSyAkOUS3ypDAxmeQSRYEepO1AJmaClrmJRU";
+var GOOGLE_MAP_API_KEY = "";
 var CONTAINER_STYLE = {
   width: '400px',
   height: '400px'
