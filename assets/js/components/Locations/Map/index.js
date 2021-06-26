@@ -45,11 +45,10 @@ function CustomMarker(props) {
 
   const {infoWindownOpen,setInfoWindownOpen,marker} = props
 
-  console.log(marker)
 
   const onClick = (e) => {
-    setOpen(!open)
     setInfoWindownOpen(marker)
+    setOpen(!open)
   }
 
   if(open==true && infoWindownOpen == marker){

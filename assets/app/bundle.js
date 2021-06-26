@@ -329,11 +329,10 @@ function CustomMarker(props) {
   var infoWindownOpen = props.infoWindownOpen,
       setInfoWindownOpen = props.setInfoWindownOpen,
       marker = props.marker;
-  console.log(marker);
 
   var onClick = function onClick(e) {
-    setOpen(!open);
     setInfoWindownOpen(marker);
+    setOpen(!open);
   };
 
   if (open == true && infoWindownOpen == marker) {
