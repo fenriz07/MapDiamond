@@ -6,6 +6,8 @@ export default function Region(props) {
 
     const {setRegion} = props;
 
+    
+
     const onChange = ( event ) => {
 
         let target = event.target;
@@ -19,7 +21,7 @@ export default function Region(props) {
             <option key={"d"} value={"d"}  disabled>Región</option>
             {
                 Regions().map( (region,key) => {
-                    return <option key={key} value={region.id}>{region.name}</option>
+                    return <option vd={Math.random()} key={key} value={region.id}>{region.name}</option>
                 })
             }
         </select>

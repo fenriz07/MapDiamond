@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useState}  from 'react';
 import { Comunas,getCenterComuna } from '../../../../model/comuna';
 
 
@@ -6,15 +6,23 @@ export default function Comuna(props) {
 
     const {region,setCenter} = props;
 
+    const [defaultValue,setDefaultValue] = useState("d");
+
     const onChange = ( event ) => {
+        
 
         let target = event.target;
 
-        let idComuna = Number(target.value);
+        if (target.value != "d"){
 
-        let center = getCenterComuna(region,idComuna);
+            let idComuna = Number(target.value);
 
-        setCenter(center)
+            let center = getCenterComuna(region,idComuna);
+    
+            setCenter(center)
+        }
+
+        setDefaultValue(target.value)
     }
 
     if( region === null )
@@ -25,8 +33,8 @@ export default function Comuna(props) {
     return (
         
 
-        <select defaultValue={"d"} onChange={onChange} >
-            <option key={"d"} value={"d"}  disabled>Comuna</option>
+        <select value={defaultValue} onChange={onChange} >
+            <option key={"d"} value={"d"}>Selecciona Comuna</option>
             {
                 Comunas()[region].map( (comuna,key) => {
                     return <option key={key} value={comuna.id}>{comuna.name}</option>

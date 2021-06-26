@@ -12,12 +12,18 @@ export default function Filter(props) {
 
 return (
 
-    <div className="col-6 filter">
-
-        <Region setRegion={setRegion}/>
-        <Comuna setCenter={setCenter} region={region} comuna={comuna} setComuna={setComuna}/>
-
+    <div className="filter-wrapper">
+        <div className="title">
+            <p>NUESTRAS SUCURSALES</p>
+            <h3>Busca tu Mini Bodega más cercana</h3>
+        </div>
+        <div className="field-wrap">
+            <Region setRegion={setRegion}/>
+        </div>
+        <div className="field-wrap">
+            <Comuna setCenter={setCenter} region={region} comuna={comuna} setComuna={setComuna}/>
+        </div>
     </div>
-
-);
+    
+    );
 };

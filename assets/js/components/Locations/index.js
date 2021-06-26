@@ -10,11 +10,13 @@ export default function Locations (props) {
 
 return (
 
-    <div className="row">
-
-        <Filter setCenter={setCenter} />
-        <Map center={center} />
-
+    <div className="row justify-content-center g-5">
+        <div className="col-11 col-md-6 order-2 order-md-1">
+            <Map center={center} />
+        </div>
+        <div className="col-11 col-md-6 order-1 order-md-2">
+            <Filter setCenter={setCenter} />
+        </div>
     </div>
 
 );

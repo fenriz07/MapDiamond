@@ -99,17 +99,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _model_comuna__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../model/comuna */ "./js/model/comuna.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function Comuna(props) {
   var region = props.region,
       setCenter = props.setCenter;
 
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("d"),
+      _useState2 = _slicedToArray(_useState, 2),
+      defaultValue = _useState2[0],
+      setDefaultValue = _useState2[1];
+
   var onChange = function onChange(event) {
     var target = event.target;
-    var idComuna = Number(target.value);
-    var center = Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["getCenterComuna"])(region, idComuna);
-    setCenter(center);
+
+    if (target.value != "d") {
+      var idComuna = Number(target.value);
+      var center = Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["getCenterComuna"])(region, idComuna);
+      setCenter(center);
+    }
+
+    setDefaultValue(target.value);
   };
 
   if (region === null) {
@@ -117,13 +139,12 @@ function Comuna(props) {
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    defaultValue: "d",
+    value: defaultValue,
     onChange: onChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     key: "d",
-    value: "d",
-    disabled: true
-  }, "Comuna"), Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["Comunas"])()[region].map(function (comuna, key) {
+    value: "d"
+  }, "Selecciona Comuna"), Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["Comunas"])()[region].map(function (comuna, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       key: key,
       value: comuna.id
@@ -166,6 +187,7 @@ function Region(props) {
     disabled: true
   }, "Regi\xF3n"), Object(_model_regions__WEBPACK_IMPORTED_MODULE_1__["Regions"])().map(function (region, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      vd: Math.random(),
       key: key,
       value: region.id
     }, region.name);
@@ -217,15 +239,21 @@ function Filter(props) {
 
   var setCenter = props.setCenter;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-6 filter"
+    className: "filter-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "NUESTRAS SUCURSALES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Busca tu Mini Bodega m\xE1s cercana")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "field-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Region__WEBPACK_IMPORTED_MODULE_1__["default"], {
     setRegion: setRegion
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Comuna__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "field-wrap"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Comuna__WEBPACK_IMPORTED_MODULE_2__["default"], {
     setCenter: setCenter,
     region: region,
     comuna: comuna,
     setComuna: setComuna
-  }));
+  })));
 }
 ;
 
@@ -264,7 +292,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function Map(props) {
   var center = props.center;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["LoadScript"], {
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      infoWindownOpen = _useState2[0],
+      setInfoWindownOpen = _useState2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "map-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["LoadScript"], {
     googleMapsApiKey: _model_conf__WEBPACK_IMPORTED_MODULE_2__["GOOGLE_MAP_API_KEY"]
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["GoogleMap"], {
     mapContainerStyle: _model_conf__WEBPACK_IMPORTED_MODULE_2__["CONTAINER_STYLE"],
@@ -272,26 +308,35 @@ function Map(props) {
     zoom: 11
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), Object(_model_markers___WEBPACK_IMPORTED_MODULE_3__["getMarkers"])().map(function (position, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomMarker, {
+      infoWindownOpen: infoWindownOpen,
+      setInfoWindownOpen: setInfoWindownOpen,
+      marker: key,
       key: key,
       position: position,
       text: "Test"
     });
-  })));
+  }))));
 }
 
 function CustomMarker(props) {
   var position = props.position;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      open = _useState2[0],
-      setOpen = _useState2[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      open = _useState4[0],
+      setOpen = _useState4[1];
+
+  var infoWindownOpen = props.infoWindownOpen,
+      setInfoWindownOpen = props.setInfoWindownOpen,
+      marker = props.marker;
+  console.log(marker);
 
   var onClick = function onClick(e) {
     setOpen(!open);
+    setInfoWindownOpen(marker);
   };
 
-  if (open == true) {
+  if (open == true && infoWindownOpen == marker) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
       position: position,
       onClick: onClick
@@ -299,12 +344,7 @@ function CustomMarker(props) {
       position: position
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "info-window-22"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Nombre: ", position.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Ciudad: ", position.city), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "tel:" + position.phone
-    }, position.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      target: "_blank",
-      href: position.website
-    }, "Sitio Web"))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Sucursal:"), " ", position.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Direcci\xF3n:"), " ", position.address))));
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_react_google_maps_api__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
@@ -360,12 +400,16 @@ function Locations(props) {
       setCenter = _useState4[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
+    className: "row justify-content-center g-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 col-md-6 order-2 order-md-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Map__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    center: center
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-11 col-md-6 order-1 order-md-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Filter__WEBPACK_IMPORTED_MODULE_2__["default"], {
     setCenter: setCenter
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Map__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    center: center
-  }));
+  })));
 }
 ;
 
@@ -422,82 +466,475 @@ __webpack_require__.r(__webpack_exports__);
 
 function Comunas() {
   return {
-    1: [{
-      id: 1,
-      name: "Arica",
-      points: [{
-        lat: -18.45259904738144,
-        lng: -70.29266933285768,
-        name: "Test1",
-        phone: "741852",
-        website: "https://google.com"
-      }, {
-        lat: -18.490148654973403,
-        lng: -70.29744571644653,
-        name: "Test2",
-        phone: "741852",
-        website: "https://google.com"
-      }],
-      center: {
-        lat: -18.476577063399176,
-        lng: -70.31783530733459
-      }
-    }, {
-      id: 2,
-      name: "Camarones"
-    }, {
-      id: 3,
-      name: "Putre"
-    }, {
-      id: 4,
-      name: "General Lagos"
-    }, {
-      id: 5,
-      name: "Arica"
-    }],
-    2: [{
-      id: 6,
-      name: "Iquique"
-    }, {
-      id: 7,
-      name: "Alto Hospicio"
-    }, {
-      id: 8,
-      name: "Pozo Almonte"
-    }, {
-      id: 9,
-      name: "Camiña"
-    }, {
-      id: 10,
-      name: "Colchane"
-    }, {
-      id: 11,
-      name: "Huara"
-    }, {
-      id: 12,
-      name: "Pica"
-    }],
+    // 1 : [
+    //         {
+    //             id : 1,
+    //             name :  "Arica",
+    //             points : [
+    //                 // { lat : -18.45259904738144 , lng:-70.29266933285768,name:"Test1",phone:"741852",website:"https://google.com"},
+    //                 // { lat : -18.490148654973403, lng:-70.29744571644653,name:"Test2",phone:"741852",website:"https://google.com"},
+    //             ],
+    //             center : { lat : -18.476577063399176, lng:-70.31783530733459}                  
+    //         },
+    //         {
+    //             id : 2,
+    //             name :  "Camarones",
+    //         },
+    //         {
+    //             id : 3,
+    //             name :  "Putre",
+    //         },
+    //         {
+    //             id : 4,
+    //             name :  "General Lagos",
+    //         },
+    //         {
+    //             id : 5,
+    //             name :  "Arica",
+    //         },
+    // ],
+    // 2 : [
+    //         {
+    //             id : 6,
+    //             name :  "Iquique",
+    //         },
+    //         {
+    //             id : 7,
+    //             name :  "Alto Hospicio",
+    //         },
+    //         {
+    //             id : 8,
+    //             name :  "Pozo Almonte",
+    //         },
+    //         {
+    //             id : 9,
+    //             name :  "Camiña",
+    //         },
+    //         {
+    //             id : 10,
+    //             name :  "Colchane",
+    //         },
+    //         {
+    //             id : 11,
+    //             name :  "Huara",
+    //         },
+    //         {
+    //             id : 12,
+    //             name :  "Pica",
+    //         },
+    // ],
     14: [{
       id: 13,
-      name: "Santiago Centro",
+      name: "Santiago",
       points: [{
-        lat: -33.44732603999942,
-        lng: -70.65784434776982,
-        name: "Test1",
-        phone: "741852",
-        website: "https://google.com",
-        "city": "Prueba de Ciudad"
+        lat: -33.4695945,
+        lng: -70.6500417,
+        name: "Núcleo San Diego",
+        phone: "",
+        website: "",
+        address: "Ñuble 1055"
       }, {
-        lat: -33.44043389275519,
-        lng: -70.66114824638738,
-        name: "Test2",
-        phone: "741852",
-        website: "https://google.com",
-        "city": "Prueba de Ciudad2"
-      }],
+        lat: -33.4583325,
+        lng: -70.633722,
+        name: "Santa Elvira",
+        phone: "",
+        website: "",
+        address: "Av. Santa Elvira 166"
+      } // { lat : -33.44732603999942 , lng:-70.65784434776982,name:"Test1",phone:"741852",website:"https://google.com","city":"Prueba de Ciudad"},
+      ],
       center: {
         lat: -33.4433631222408,
         lng: -70.65392096816144
+      }
+    }, {
+      id: 14,
+      name: "Pudahuel",
+      points: [{
+        lat: -33.4442185,
+        lng: -70.782994,
+        name: "Aeropuerto",
+        phone: "",
+        website: "",
+        address: "San Pablo 9900"
+      }],
+      center: {
+        lat: -33.4442185,
+        lng: -70.782994
+      }
+    }, {
+      id: 15,
+      name: "Quilicura",
+      points: [{
+        lat: -33.3802697,
+        lng: -70.754681,
+        name: "Cordillera",
+        phone: "",
+        website: "",
+        address: "Av. Americo Vespucio 1001 "
+      }],
+      center: {
+        lat: -33.3802697,
+        lng: -70.754681
+      }
+    }, {
+      id: 16,
+      name: "Las Condes",
+      points: [{
+        lat: -33.4116079,
+        lng: -70.5800254,
+        name: "Apoquindo",
+        phone: "",
+        website: "",
+        address: "Av. Apoquindo 4950"
+      }, {
+        lat: -33.4105332,
+        lng: -70.5684868,
+        name: "Manquehue",
+        phone: "",
+        website: "",
+        address: "Av. Manquehue Sur 350"
+      }],
+      center: {
+        lat: -33.4116079,
+        lng: -70.5800254
+      }
+    }, {
+      id: 17,
+      name: "Recoleta",
+      points: [{
+        lat: -33.4345193,
+        lng: -70.6407344,
+        name: "PITS Núcleo Bellavista",
+        phone: "",
+        website: "",
+        address: "Bellavista 77/ purisima 25"
+      }],
+      center: {
+        lat: -33.4345193,
+        lng: -70.6407344
+      }
+    }, {
+      id: 18,
+      name: "Cerro Navia",
+      points: [{
+        lat: -33.4134145,
+        lng: -70.722564,
+        name: "Carrascal",
+        phone: "",
+        website: "",
+        address: "Av. Ceramica 2371"
+      }],
+      center: {
+        lat: -33.4134145,
+        lng: -70.722564
+      }
+    }, {
+      id: 19,
+      name: "Cerrillos",
+      points: [{
+        lat: -33.5076895,
+        lng: -70.718405,
+        name: "Cerrillos",
+        phone: "",
+        website: "",
+        address: "Av. Pedro Aguirre Cerda 7786"
+      }],
+      center: {
+        lat: -33.5076895,
+        lng: -70.718405
+      }
+    }, {
+      id: 20,
+      name: "Huechuraba",
+      points: [{
+        lat: -33.3613729,
+        lng: -70.6829366,
+        name: "Núcleo Huechuraba",
+        phone: "",
+        website: "",
+        address: "Calle Nueva 1885"
+      }],
+      center: {
+        lat: -33.3613729,
+        lng: -70.6829366
+      }
+    }, {
+      id: 21,
+      name: "Lo Barnechea",
+      points: [{
+        lat: -33.3560695,
+        lng: -70.5391,
+        name: "La Dehesa",
+        phone: "",
+        website: "",
+        address: "Av. José Alcalde Délano 10.581"
+      }],
+      center: {
+        lat: -33.3560695,
+        lng: -70.5391
+      }
+    }, {
+      id: 22,
+      name: "Ñuñoa",
+      points: [{
+        lat: -33.4641105,
+        lng: -70.61753,
+        name: "Marathon",
+        phone: "",
+        website: "",
+        address: "Av. Marathon 1315 "
+      }],
+      center: {
+        lat: -33.4641105,
+        lng: -70.61753
+      }
+    }, {
+      id: 23,
+      name: "Conchalí",
+      points: [{
+        lat: -33.3672411,
+        lng: -70.6865713,
+        name: "Nucleo Vespucio I",
+        phone: "",
+        website: "",
+        address: "Av. Americo Vespucio 1940"
+      }, {
+        lat: -33.3672411,
+        lng: -70.6865713,
+        name: "Nucleo Vespucio II",
+        phone: "",
+        website: "",
+        address: "Av. Americo Vespucio 1980"
+      }],
+      center: {
+        lat: -33.3672411,
+        lng: -70.6865713
+      }
+    }, {
+      id: 24,
+      name: "San Bernardo",
+      points: [{
+        lat: -33.5555159,
+        lng: -70.7103942,
+        name: "San Bernardo",
+        phone: "",
+        website: "",
+        address: "Jorge Alessandri 11500"
+      }],
+      center: {
+        lat: -33.5555159,
+        lng: -70.7103942
+      }
+    }, {
+      id: 25,
+      name: "Pedro Aguirre Cerda",
+      points: [{
+        lat: -33.4918221,
+        lng: -70.6696345,
+        name: "Ochagavía",
+        phone: "",
+        website: "",
+        address: "Club Hipico 4676 "
+      }],
+      center: {
+        lat: -33.4918221,
+        lng: -70.6696345
+      }
+    }, {
+      id: 26,
+      name: "La Reina",
+      points: [{
+        lat: -33.6658512,
+        lng: -70.925177,
+        name: "Plaza Egaña",
+        phone: "",
+        website: "",
+        address: "Av. Ossa 345"
+      }],
+      center: {
+        lat: -33.6658512,
+        lng: -70.925177
+      }
+    }, {
+      id: 27,
+      name: "Puente Alto",
+      points: [{
+        lat: -33.606446284085095,
+        lng: -70.5752005179094,
+        name: "Núcleo Puente Alto",
+        phone: "",
+        website: "",
+        address: "Balmaceda 489"
+      }],
+      center: {
+        lat: -33.606446284085095,
+        lng: -70.5752005179094
+      }
+    }, {
+      id: 28,
+      name: "Renca",
+      points: [{
+        lat: -33.4195935,
+        lng: -70.6814914,
+        name: "Renca",
+        phone: "",
+        website: "",
+        address: "Av. Jorge Hirmas 2560"
+      }],
+      center: {
+        lat: -33.4195935,
+        lng: -70.6814914
+      }
+    }],
+    10: [{
+      id: 29,
+      name: "Concepción",
+      points: [{
+        lat: -36.8042057,
+        lng: -73.082799,
+        name: "Concepción",
+        phone: "",
+        website: "",
+        address: "Cristobal Colon 9765"
+      }],
+      center: {
+        lat: -36.8042057,
+        lng: -73.082799
+      }
+    }],
+    4: [{
+      id: 30,
+      name: "Copiapo",
+      points: [{
+        lat: -27.3363952,
+        lng: -70.377601,
+        name: "Copiapo",
+        phone: "",
+        website: "",
+        address: "Ruta 5 Norte 3604 km 813"
+      }],
+      center: {
+        lat: -27.3363952,
+        lng: -70.377601
+      }
+    }],
+    6: [{
+      id: 31,
+      name: "Quilpué",
+      points: [{
+        lat: -33.0448155,
+        lng: -71.41903,
+        name: "El Belloto",
+        phone: "",
+        website: "",
+        address: "Baquedano 1475"
+      }],
+      center: {
+        lat: -33.0448155,
+        lng: -71.41903
+      }
+    }],
+    3: [{
+      id: 32,
+      name: "Quilpué",
+      points: [{
+        lat: -23.5084577,
+        lng: -70.4064551,
+        name: "Antofagasta",
+        phone: "",
+        website: "",
+        address: "Pedro Aguirre Cerda 15600"
+      }],
+      center: {
+        lat: -23.5084577,
+        lng: -70.4064551
+      }
+    }],
+    7: [{
+      id: 33,
+      name: "Rancagua",
+      points: [{
+        lat: -34.1836985,
+        lng: -70.743325,
+        name: "Rancagua",
+        phone: "",
+        website: "",
+        address: "Av. Las Torres 90"
+      }],
+      center: {
+        lat: -34.1836985,
+        lng: -70.743325
+      }
+    }],
+    13: [{
+      id: 34,
+      name: "Puerto Montt",
+      points: [{
+        lat: -34.1836985,
+        lng: -70.743325,
+        name: "Puerto Montt",
+        phone: "",
+        website: "",
+        address: "Camino a Pargua km 1025"
+      }],
+      center: {
+        lat: -34.1836985,
+        lng: -70.743325
+      }
+    }],
+    5: [{
+      id: 35,
+      name: "Coquimbo",
+      points: [{
+        lat: -29.9699973,
+        lng: -71.267651,
+        name: "Coquimbo",
+        phone: "",
+        website: "",
+        address: "Calle Cinco 1251 "
+      }, {
+        lat: -29.9351275,
+        lng: -71.2753012,
+        name: "Núcleo  Balmaceda",
+        phone: "",
+        website: "",
+        address: "Balmaceda 2885"
+      }],
+      center: {
+        lat: -29.9699973,
+        lng: -71.267651
+      }
+    }],
+    9: [{
+      id: 36,
+      name: "Chillán",
+      points: [{
+        lat: -36.6239086,
+        lng: -72.147488,
+        name: "Chillán",
+        phone: "",
+        website: "",
+        address: "Avda. O’Higgins 3637"
+      }],
+      center: {
+        lat: -36.6239086,
+        lng: -72.147488
+      }
+    }],
+    11: [{
+      id: 37,
+      name: "Temuco",
+      points: [{
+        lat: -38.7586687,
+        lng: -72.6175425,
+        name: "Temuco",
+        phone: "",
+        website: "",
+        address: "Longitudinal Sur 2375"
+      }],
+      center: {
+        lat: -38.7586687,
+        lng: -72.6175425
       }
     }]
   };
@@ -533,10 +970,10 @@ var CENTER_MAP = {
   lat: -33.44343582525667,
   lng: -70.65368618739299
 };
-var GOOGLE_MAP_API_KEY = "";
+var GOOGLE_MAP_API_KEY = "AIzaSyAvJW4GwO9aGPIDB3hx4H2LDWZpC3YFkOU";
 var CONTAINER_STYLE = {
-  width: '400px',
-  height: '400px'
+  width: '100%',
+  height: '450px'
 };
 
 /***/ }),
@@ -580,16 +1017,19 @@ function getMarkers() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Regions", function() { return Regions; });
 function Regions() {
-  return [{
-    "id": 1,
-    "name": "Arica y Parinacota"
-  }, {
-    "id": 2,
-    "name": "Tarapacá"
-  }, {
-    "id": 3,
-    "name": "Antofagasta"
-  }, {
+  return [// {
+  //     "id" : 1,
+  //     "name": "Arica y Parinacota",
+  // },
+  // {
+  //     "id" : 2,
+  //     "name": "Tarapacá",
+  // },
+  // {
+  //     "id" : 3,
+  //     "name": "Antofagasta",
+  // },
+  {
     "id": 4,
     "name": "Atacama"
   }, {
@@ -601,10 +1041,11 @@ function Regions() {
   }, {
     "id": 7,
     "name": "Región del Libertador Gral. Bernardo O’Higgins"
-  }, {
-    "id": 8,
-    "name": "Región del Maule"
-  }, {
+  }, // {
+  //     "id" :8,
+  //     "name": "Región del Maule",
+  // },
+  {
     "id": 9,
     "name": "Región de Ñuble"
   }, {
@@ -613,10 +1054,11 @@ function Regions() {
   }, {
     "id": 11,
     "name": "Región de la Araucanía"
-  }, {
-    "id": 12,
-    "name": "Región de Los Ríos"
-  }, {
+  }, // {
+  //     "id" :12,
+  //     "name": "Región de Los Ríos",
+  // },
+  {
     "id": 13,
     "name": "Región de Los Lagos"
   }, {

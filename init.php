@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Map Diamond
+Plugin Name: MapDistributor
 Description: 
 Version: 0.0.1
 Author: Servio Zambrano 
