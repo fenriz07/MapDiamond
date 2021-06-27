@@ -18,7 +18,7 @@ export default function Region(props) {
     return (
 
         <select defaultValue={"d"} onChange={onChange} >
-            <option key={"d"} value={"d"}  disabled>Región</option>
+            <option key={"d"} value={"d"}  disabled>Seleccionar región</option>
             {
                 Regions().map( (region,key) => {
                     return <option vd={Math.random()} key={key} value={region.id}>{region.name}</option>
@@ -28,3 +28,5 @@ export default function Region(props) {
 
     );
 };
+
+

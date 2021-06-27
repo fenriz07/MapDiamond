@@ -135,7 +135,13 @@ function Comuna(props) {
   };
 
   if (region === null) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, "  ");
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+      value: defaultValue,
+      onChange: onChange
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: "d",
+      value: "d"
+    }, "Seleccionar comuna"));
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
@@ -144,7 +150,7 @@ function Comuna(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     key: "d",
     value: "d"
-  }, "Selecciona Comuna"), Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["Comunas"])()[region].map(function (comuna, key) {
+  }, "Seleccionar comuna"), Object(_model_comuna__WEBPACK_IMPORTED_MODULE_1__["Comunas"])()[region].map(function (comuna, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       key: key,
       value: comuna.id
@@ -185,7 +191,7 @@ function Region(props) {
     key: "d",
     value: "d",
     disabled: true
-  }, "Regi\xF3n"), Object(_model_regions__WEBPACK_IMPORTED_MODULE_1__["Regions"])().map(function (region, key) {
+  }, "Seleccionar regi\xF3n"), Object(_model_regions__WEBPACK_IMPORTED_MODULE_1__["Regions"])().map(function (region, key) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       vd: Math.random(),
       key: key,

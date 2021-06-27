@@ -27,14 +27,21 @@ export default function Comuna(props) {
 
     if( region === null )
     {
-        return <React.Fragment>  </React.Fragment>;
+        return (
+        
+
+            <select value={defaultValue} onChange={onChange} >
+                <option key={"d"} value={"d"}>Seleccionar comuna</option>
+            </select>
+    
+        );
     }
 
     return (
         
 
         <select value={defaultValue} onChange={onChange} >
-            <option key={"d"} value={"d"}>Selecciona Comuna</option>
+            <option key={"d"} value={"d"}>Seleccionar comuna</option>
             {
                 Comunas()[region].map( (comuna,key) => {
                     return <option key={key} value={comuna.id}>{comuna.name}</option>
